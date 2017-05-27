@@ -6,7 +6,10 @@ RUN apt-get update \
 		rsync \
 		supervisor \
 	&& rm -Rf /var/lib/apt/lists/* \
-	&& sed -i 's/\(.*pam_loginuid.so\)/#\1/' /etc/pam.d/sshd
+	&& sed -i 's/\(.*pam_loginuid.so\)/#\1/' /etc/pam.d/sshd \
+	&& mkdir /home/postgres \
+	&& chown postgres:postgres /home/postgres \
+	&& chmod 700 /home/postgres
 ENV \
 	BARMAN_USER=barman \
 	BARMAN_PASSWORD= \
