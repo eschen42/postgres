@@ -2,7 +2,9 @@
 FROM debian:jessie
 
 # explicitly set user/group IDs
-RUN groupadd -r postgres --gid=999 && useradd -r -g postgres --uid=999 postgres
+RUN groupadd -r postgres --gid=999 \
+  && useradd -r -g postgres --uid=999 postgres \
+  && install -d -m 0700 -o postgres -g postgres /home/postgres
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -39,7 +41,7 @@ RUN set -ex; \
 
 ENV \
 	PG_MAJOR=9.2 \
-	PG_VERSION=9.2.20-1.pgdg80+1 \
+	PG_VERSION=9.2.21-1.pgdg80+1 \
 	PATH=/usr/lib/postgresql/9.2/bin:$PATH \
 	PGDATA=/var/lib/postgresql/data
 

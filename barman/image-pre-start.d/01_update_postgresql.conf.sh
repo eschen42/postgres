@@ -3,7 +3,6 @@
 set -eo pipefail
 
 . /usr/local/bin/functions.sh
-major_gte() { verlt $1 ${PG_MAJOR}; }
 
 echo "Updating postgresql.conf to allow for streaming replication"
 if major_gte 9.6; then
